@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SNAKE ATTACK</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Lottie (for animation support) -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ==================== VINES ==================== -->
+  <div class="vine vine-tl">
+    <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 Q30 60 10 120 Q-10 160 20 180" stroke="#2d6a30" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M40 0 Q60 40 30 80" stroke="#2d6a30" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="10" cy="120" r="7" fill="#4CAF50"/>
+      <circle cx="20" cy="60"  r="5" fill="#8BC34A"/>
+      <circle cx="30" cy="80"  r="4" fill="#4CAF50"/>
+    </svg>
+  </div>
+
+  <div class="vine vine-tr">
+    <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 Q30 60 10 120 Q-10 160 20 180" stroke="#2d6a30" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M40 0 Q60 40 30 80" stroke="#2d6a30" stroke-width="5" fill="none" stroke-linecap="round"/>
+      <circle cx="10" cy="120" r="7" fill="#4CAF50"/>
+      <circle cx="20" cy="60"  r="5" fill="#8BC34A"/>
+    </svg>
+  </div>
+
+  <div class="vine vine-bl">
+    <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 Q30 60 10 120 Q-10 160 20 180" stroke="#2d6a30" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <circle cx="10" cy="60"  r="6" fill="#4CAF50"/>
+      <circle cx="15" cy="110" r="5" fill="#8BC34A"/>
+    </svg>
+  </div>
+
+  <div class="vine vine-br">
+    <svg width="180" height="180" viewBox="0 0 180 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0 0 Q30 60 10 120 Q-10 160 20 180" stroke="#2d6a30" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <circle cx="10" cy="60"  r="6" fill="#4CAF50"/>
+      <circle cx="15" cy="110" r="5" fill="#8BC34A"/>
+    </svg>
+  </div>
+
+  <!-- ==================== TITLE SCREEN ==================== -->
+  <div class="screen" id="title-screen">
+
+    <div class="title-wrap">
+      <span class="snake-deco">🐍</span>
+      <span class="title-snake">SNAKE</span>
+      <span class="title-attack">ATTACK</span>
+    </div>
+
+    <div class="score-banner">
+      <div class="score-item">
+        <div class="score-label">SCORE</div>
+        <div class="score-val" id="title-score">0</div>
+      </div>
+      <div class="score-item">
+        <div class="score-label">BEST</div>
+        <div class="score-val" id="title-best">0</div>
+      </div>
+    </div>
+
+    <div class="play-btn-wrap" id="play-btn" title="Play">
+      <div class="play-btn">▶</div>
+      <div class="play-label">TAP TO PLAY</div>
+    </div>
+
+    <div class="icon-row">
+      <div class="icon-btn" id="sound-btn" title="Toggle Sound">🔊</div>
+      <div class="icon-btn" id="instr-btn" title="Instructions">📖</div>
+      <div class="icon-btn" id="exit-btn"  title="Exit">✕</div>
+    </div>
+
+  </div>
+
+  <!-- ==================== INSTRUCTIONS SCREEN ==================== -->
+  <div class="screen hidden" id="instruction-screen">
+    <div class="instr-panel">
+
+      <div class="instr-title">HOW TO PLAY</div>
+
+      <div class="instr-row">
+        <div class="instr-icon" style="animation-delay:0s">🎮</div>
+        <div class="instr-text">
+          <h3>MOVE</h3>
+          <p>Use arrow keys to steer your snake</p>
+          <div class="instr-keys">
+            <span class="key">↑</span>
+            <span class="key">↓</span>
+            <span class="key">←</span>
+            <span class="key">→</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="instr-row">
+        <div class="instr-icon" style="animation-delay:0.3s">🍎</div>
+        <div class="instr-text">
+          <h3>EAT</h3>
+          <p>Gobble fruits to grow and score points. Speed increases as you eat more!</p>
+        </div>
+      </div>
+
+      <div class="instr-row">
+        <div class="instr-icon" style="animation-delay:0.6s">💀</div>
+        <div class="instr-text">
+          <h3>AVOID</h3>
+          <p>Don't hit walls or your own tail — instant game over!</p>
+        </div>
+      </div>
+
+      <div class="instr-row">
+        <div class="instr-icon" style="animation-delay:0.9s">⏸️</div>
+        <div class="instr-text">
+          <h3>PAUSE</h3>
+          <div class="instr-keys">
+            <span class="key">SPACE</span>
+            <span class="key">ESC = Menu</span>
+          </div>
+        </div>
+      </div>
+
+      <button class="start-btn" id="start-game-btn">LET'S GO! 🐍</button>
+
+    </div>
+  </div>
+
+  <!-- ==================== GAME SCREEN ==================== -->
+  <div class="screen hidden" id="game-screen">
+    <div class="game-wrap">
+
+      <div class="hud">
+        <div>
+          <div class="hud-score">SCORE: <span id="score-display">0</span></div>
+          <div class="hud-best">BEST: <span id="best-display">0</span></div>
+        </div>
+        <div class="hud-controls">
+          <div class="hud-btn" id="hud-sound">🔊</div>
+          <div class="hud-btn" id="hud-pause">⏸</div>
+          <div class="hud-btn" id="hud-exit">🏠</div>
+        </div>
+      </div>
+
+      <canvas id="gameCanvas"></canvas>
+
+    </div>
+  </div>
+
+  <!-- ==================== GAME OVER SCREEN ==================== -->
+  <div class="screen hidden" id="gameover-screen">
+    <div class="gameover-panel">
+      <div class="gameover-emoji">💀</div>
+      <div class="gameover-title">GAME OVER</div>
+      <div class="gameover-score">Score: <span id="go-score">0</span></div>
+      <div class="gameover-best">🏆 Best: <span id="go-best">0</span></div>
+      <div class="gameover-btns">
+        <button class="go-btn restart" id="go-restart">▶ RESTART</button>
+        <button class="go-btn menu"    id="go-menu">🏠 MENU</button>
+      </div>
+      <div class="leaderboard">
+        <div class="lb-title">🏆 TOP SCORES</div>
+        <div id="lb-list"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PAUSE OVERLAY ==================== -->
+  <div id="pause-overlay" class="hidden">
+    <div class="pause-inner">
+      ⏸ PAUSED
+      <p>PRESS SPACE TO RESUME</p>
+    </div>
+  </div>
+
+  <!-- External JavaScript -->
+  <script src="game.js"></script>
+
+</body>
+</html>
